@@ -1,0 +1,221 @@
+{
+	"dances": [
+		{
+			"name": "Foxtrot",
+			"style": "Smooth",
+			"timing": 4,
+			"min": 120,
+			"max": 136
+		},
+		{
+			"name": "Foxtrot",
+			"style": "Standard",
+			"timing": 4,
+			"min": 112,
+			"max": 120
+		},
+		{
+			"name": "Quickstep",
+			"style": "Standard",
+			"timing": 4,
+			"min": 192,
+			"max": 208
+		},
+		{
+			"name": "Tango",
+			"style": "Smooth",
+			"timing": 4,
+			"min": 120,
+			"max": 132
+		},
+		{
+			"name": "Tango",
+			"style": "Standard",
+			"timing": 4,
+			"min": 120,
+			"max": 132
+		},
+		{
+			"name": "Tango",
+			"style": "Argentine",
+			"timing": 4,
+			"min": null,
+			"max": null
+		},
+		{
+			"name": "Two Step",
+			"style": "Country",
+			"timing": 4,
+			"min": 168,
+			"max": 200
+		},
+		{
+			"name": "Viennese Waltz",
+			"style": "Smooth",
+			"timing": 3,
+			"min": 150,
+			"max": 180
+		},
+		{
+			"name": "Viennese Waltz",
+			"style": "Standard",
+			"timing": 3,
+			"min": 150,
+			"max": 180
+		},
+		{
+			"name": "Waltz",
+			"style": "Smooth",
+			"timing": 3,
+			"min": 84,
+			"max": 96
+		},
+		{
+			"name": "Waltz",
+			"style": "Standard",
+			"timing": 3,
+			"min": 84,
+			"max": 93
+		},
+		{
+			"name": "Waltz",
+			"style": "Country",
+			"timing": 3,
+			"min": 76,
+			"max": 98
+		},
+		{
+			"name": "Bachata",
+			"style": "Latin Club",
+			"timing": 4,
+			"min": null,
+			"max": null
+		},
+		{
+			"name": "Bolero",
+			"style": "Rhythm",
+			"timing": 4,
+			"min": 96,
+			"max": 104
+		},
+		{
+			"name": "Cha Cha",
+			"style": "Rhythm",
+			"timing": 4,
+			"min": 112,
+			"max": 128
+		},
+		{
+			"name": "Cha Cha",
+			"style": "Latin",
+			"timing": 4,
+			"min": 112,
+			"max": 128
+		},
+		{
+			"name": "Cha Cha",
+			"style": "Country",
+			"timing": 4,
+			"min": 96,
+			"max": 118
+		},
+		{
+			"name": "East Coast Swing",
+			"style": "Rhythm",
+			"timing": 4,
+			"min": 136,
+			"max": 144
+		},
+		{
+			"name": "East Coast Swing",
+			"style": "Country",
+			"timing": 4,
+			"min": 124,
+			"max": 142
+		},
+		{
+			"name": "Jive",
+			"style": "Latin",
+			"timing": 4,
+			"min": 152,
+			"max": 176
+		},
+		{
+			"name": "Hustle",
+			"style": "Swing Club",
+			"timing": 4,
+			"min": 104,
+			"max": 121
+		},
+		{
+			"name": "Mambo",
+			"style": "Rhythm",
+			"timing": 4,
+			"min": 188,
+			"max": 204
+		},
+		{
+			"name": "Merengue",
+			"style": "Latin Club",
+			"timing": 4,
+			"min": 58,
+			"max": 64
+		},
+		{
+			"name": "Nightclub Two Step",
+			"style": "Swing Club",
+			"timing": 4,
+			"min": 56,
+			"max": 64
+		},
+		{
+			"name": "Paso Doble",
+			"style": "Latin",
+			"timing": 4,
+			"min": 112,
+			"max": 124
+		},
+		{
+			"name": "Polka",
+			"style": "Fun",
+			"timing": 4,
+			"min": 104,
+			"max": 124
+		},
+		{
+			"name": "Rumba",
+			"style": "Rhythm",
+			"timing": 4,
+			"min": 120,
+			"max": 144
+		},
+		{
+			"name": "Rumba",
+			"style": "Latin",
+			"timing": 4,
+			"min": 96,
+			"max": 112
+		},
+		{
+			"name": "Salsa",
+			"style": "Latin Club",
+			"timing": 4,
+			"min": 150,
+			"max": 250
+		},
+		{
+			"name": "Samba",
+			"style": "Latin",
+			"timing": 4,
+			"min": 96,
+			"max": 104
+		},
+		{
+			"name": "West Coast Swing",
+			"style": "Swing Club",
+			"timing": 4,
+			"min": 85,
+			"max": 102
+		}
+	]
+}
