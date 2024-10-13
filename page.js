@@ -177,6 +177,42 @@ function renderChart(chartElement) {
 		}
 		chartElement.appendChild(container);
 	}
+
+	{
+		let container = document.createElement("div");
+		container.className = "info";
+
+		for (let dance of processedData.dances) {
+			let row = document.createElement('div');
+
+			let line = dance.name;
+			if (dance.style) {
+				line += " (" + dance.style + ")";
+			}
+			line += " - " + dance.min + "-" + dance.max + "bpm";
+
+			row.dataset.name = dance.name;
+			row.dataset.style = dance.style;
+			row.dataset.timing = dance.timing;
+			row.dataset.min = dance.min;
+			row.dataset.max = dance.max;
+
+			row.appendChild(document.createTextNode(line));
+
+			if (dance.source) {
+				let citation = document.createElement("sup");
+				let link = document.createElement("a");
+				link.target = "_blank";
+				link.href = dance.source;
+				link.appendChild(document.createTextNode("[source]"));
+				citation.appendChild(link);
+				row.appendChild(citation);
+			}
+
+			container.appendChild(row);
+		}
+		chartElement.appendChild(container);
+	}
 }
 
 let tapEvents = [];

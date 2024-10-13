@@ -5,91 +5,104 @@
 			"style": "Smooth",
 			"timing": 4,
 			"min": 120,
-			"max": 136
+			"max": 136,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Foxtrot",
 			"style": "Standard",
 			"timing": 4,
 			"min": 112,
-			"max": 120
+			"max": 120,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Quickstep",
 			"style": "Standard",
 			"timing": 4,
 			"min": 192,
-			"max": 208
+			"max": 208,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Tango",
 			"style": "Smooth",
 			"timing": 4,
 			"min": 120,
-			"max": 132
+			"max": 132,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Tango",
 			"style": "Standard",
 			"timing": 4,
 			"min": 120,
-			"max": 132
+			"max": 132,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Tango",
 			"style": "Argentine",
 			"timing": 4,
 			"min": null,
-			"max": null
+			"max": null,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Two Step",
 			"style": "Country",
 			"timing": 4,
 			"min": 168,
-			"max": 200
+			"max": 200,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Viennese Waltz",
 			"style": "Smooth",
 			"timing": 3,
 			"min": 150,
-			"max": 180
+			"max": 180,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Viennese Waltz",
 			"style": "Standard",
 			"timing": 3,
 			"min": 150,
-			"max": 180
+			"max": 180,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Waltz",
 			"style": "Smooth",
 			"timing": 3,
 			"min": 84,
-			"max": 96
+			"max": 96,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Waltz",
 			"style": "Standard",
 			"timing": 3,
 			"min": 84,
-			"max": 93
+			"max": 93,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Waltz",
 			"style": "Country",
 			"timing": 3,
 			"min": 76,
-			"max": 98
+			"max": 98,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Bachata",
 			"style": "Latin Club",
 			"timing": 4,
 			"min": null,
-			"max": null
+			"max": null,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Bolero",
@@ -103,119 +116,136 @@
 			"style": "Rhythm",
 			"timing": 4,
 			"min": 112,
-			"max": 128
+			"max": 128,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Cha Cha",
 			"style": "Latin",
 			"timing": 4,
 			"min": 112,
-			"max": 128
+			"max": 128,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Cha Cha",
 			"style": "Country",
 			"timing": 4,
 			"min": 96,
-			"max": 118
+			"max": 118,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "East Coast Swing",
 			"style": "Rhythm",
 			"timing": 4,
 			"min": 136,
-			"max": 144
+			"max": 144,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "East Coast Swing",
 			"style": "Country",
 			"timing": 4,
 			"min": 124,
-			"max": 142
+			"max": 142,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Jive",
 			"style": "Latin",
 			"timing": 4,
 			"min": 152,
-			"max": 176
+			"max": 176,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Hustle",
 			"style": "Swing Club",
 			"timing": 4,
 			"min": 104,
-			"max": 121
+			"max": 121,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Mambo",
 			"style": "Rhythm",
 			"timing": 4,
 			"min": 188,
-			"max": 204
+			"max": 204,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Merengue",
 			"style": "Latin Club",
 			"timing": 4,
 			"min": 58,
-			"max": 64
+			"max": 64,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Nightclub Two Step",
 			"style": "Swing Club",
 			"timing": 4,
 			"min": 56,
-			"max": 64
+			"max": 64,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Paso Doble",
 			"style": "Latin",
 			"timing": 4,
 			"min": 112,
-			"max": 124
+			"max": 124,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Polka",
 			"style": "Fun",
 			"timing": 4,
 			"min": 104,
-			"max": 124
+			"max": 124,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Rumba",
 			"style": "Rhythm",
 			"timing": 4,
 			"min": 120,
-			"max": 144
+			"max": 144,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Rumba",
 			"style": "Latin",
 			"timing": 4,
 			"min": 96,
-			"max": 112
+			"max": 112,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Salsa",
 			"style": "Latin Club",
 			"timing": 4,
 			"min": 150,
-			"max": 250
+			"max": 250,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "Samba",
 			"style": "Latin",
 			"timing": 4,
 			"min": 96,
-			"max": 104
+			"max": 104,
+			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
 		},
 		{
 			"name": "West Coast Swing",
 			"style": "Swing Club",
 			"timing": 4,
-			"min": 85,
-			"max": 102
+			"min": 90,
+			"max": 120,
+			"source": "https://www.westcoastswingonline.com/west-coast-swing-music/"
 		}
 	]
 }
