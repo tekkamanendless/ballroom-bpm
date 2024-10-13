@@ -1,18 +1,31 @@
 let globalData = null;
+let processedData = null;
 
 async function onPageLoaded() {
-	let response = await fetch('data.json');
-	let data = await response.json();
-	console.log("data:", data);
+	{
+		document.querySelector('#bpm').addEventListener('click', focus);
+		document.querySelector('#bpm').addEventListener('keydown', (e) => {
+			console.log("keydown!", e);
+			if (e.key == 'Escape') {
+				reset();
+			}
+		});
+	}
 
-	globalData = data;
-	handleFilter();
+	{
+		let response = await fetch('data.json');
+		let data = await response.json();
+		console.log("data:", data);
+
+		globalData = data;
+		handleFilter();
+	}
 }
 
 function handleFilter() {
-	let processedData = processData(globalData);
+	processedData = processData(globalData);
 	console.log("processedData:", processedData);
-	renderChart(document.querySelector('#chart'), processedData);
+	renderChart(document.querySelector('#chart'));
 }
 
 function queryFilters() {
@@ -97,7 +110,7 @@ function processData(data) {
 	return processedData;
 }
 
-function renderChart(chartElement, data) {
+function renderChart(chartElement) {
 	chartElement.innerHTML = "";
 
 	{
@@ -109,26 +122,26 @@ function renderChart(chartElement, data) {
 		fieldset.appendChild(legend);
 
 		{
-			let danceContainer = document.createElement("div");
+			let container = document.createElement("div");
 
-			for (let style of data.danceStyles) {
+			for (let style of processedData.danceStyles) {
 				let label = document.createElement("label");
 				label.dataset.style = style;
 
 				let checkbox = document.createElement("input");
 				checkbox.type = "checkbox";
 				checkbox.value = style;
-				checkbox.checked = data.filteredStyles.includes(style);
+				checkbox.checked = processedData.filteredStyles.includes(style);
 				checkbox.name = "style";
 				checkbox.addEventListener("change", () => {
 					handleFilter();
 				});
 				label.appendChild(checkbox);
 				label.appendChild(document.createTextNode(style));
-				danceContainer.appendChild(label);
+				container.appendChild(label);
 			}
 
-			fieldset.appendChild(danceContainer);
+			fieldset.appendChild(container);
 		}
 
 		chartElement.appendChild(fieldset);
@@ -138,13 +151,13 @@ function renderChart(chartElement, data) {
 		let container = document.createElement("div");
 		container.className = "dances";
 
-		for (let dance of data.dances) {
+		for (let dance of processedData.dances) {
 			let row = document.createElement('div');
 			row.className = "row";
 
-			row.style.marginLeft = ((dance.min - data.minimumBpm) / (data.maximumBpm - data.minimumBpm) * 100) + "%";
-			row.style.width = ((dance.max - dance.min) / (data.maximumBpm - data.minimumBpm) * 100) + "%";
-			row.style.maxWidth = ((dance.max - dance.min) / (data.maximumBpm - data.minimumBpm) * 100) + "%";
+			row.style.marginLeft = ((dance.min - processedData.minimumBpm) / (processedData.maximumBpm - processedData.minimumBpm) * 100) + "%";
+			row.style.width = ((dance.max - dance.min) / (processedData.maximumBpm - processedData.minimumBpm) * 100) + "%";
+			row.style.maxWidth = ((dance.max - dance.min) / (processedData.maximumBpm - processedData.minimumBpm) * 100) + "%";
 
 			row.title = dance.name;
 			if (dance.style) {
@@ -163,5 +176,80 @@ function renderChart(chartElement, data) {
 			container.appendChild(row);
 		}
 		chartElement.appendChild(container);
+	}
+}
+
+let tapEvents = [];
+
+function focus(e) {
+	console.log("focus!", e);
+	if (e.target.tagName !== 'DIV') {
+		return;
+	}
+	document.querySelector('#bpm [autofocus]').focus();
+}
+
+function reset() {
+	document.querySelector('#bpm input[name="bpm"]').value = "";
+	tapEvents = [];
+}
+
+function tap() {
+	console.log("Tap!");
+
+	let cooldownPeriod = 3 * 1000;
+	let maxEvents = 15;
+	let now = new Date();
+
+	if (tapEvents.length > 0) {
+		if (now - tapEvents[tapEvents.length - 1] > cooldownPeriod) {
+			console.log("Cooled down; resetting.");
+			tapEvents = [];
+		}
+	}
+
+	tapEvents.push(now);
+	while (tapEvents.length > maxEvents) {
+		tapEvents.shift();
+	}
+
+	console.log("tapEvents:", tapEvents);
+
+	let bpm = 0;
+	if (tapEvents.length >= 2) {
+		let distances = [];
+		for (let i = 1; i < tapEvents.length; i++) {
+			let distance = tapEvents[i] - tapEvents[i - 1];
+			distances.push(distance);
+		}
+		let interval = distances.reduce((a, b) => a + b) / distances.length;
+		console.log("interval:", interval);
+		bpm = parseInt((60 * 1000) / interval);
+	}
+	console.log("bpm:", bpm);
+	document.querySelector('#bpm input[name="bpm"]').value = bpm;
+	bpmChange();
+}
+
+function bpmChange() {
+	let element = document.querySelector("#chart .dances");
+	if (!element) {
+		return
+	}
+
+	let bpm = parseInt(document.querySelector('#bpm input[name="bpm"]').value);
+	if (bpm < processedData.minimumBpm || bpm > processedData.maximumBpm) {
+		bpm = 0;
+	}
+	if (!bpm) {
+		element.style.backgroundImage = "";
+		element.style.backgroundSize = "";
+		element.style.backgroundRepeat = "";
+		element.style.backgroundPosition = "";
+	} else {
+		element.style.backgroundImage = "linear-gradient(#000, #000)";
+		element.style.backgroundSize = "2px 100%";
+		element.style.backgroundRepeat = "no-repeat";
+		element.style.backgroundPosition = ((bpm - processedData.minimumBpm) / (processedData.maximumBpm - processedData.minimumBpm) * 100) + "% center";
 	}
 }

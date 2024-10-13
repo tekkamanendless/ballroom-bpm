@@ -3,12 +3,22 @@
 
 <head>
 	<title>Ballroom BPM</title>
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=0.5,maximum-scale=3,user-scalable=yes" />
 	<link rel="stylesheet" href="style.css">
 	<script src="page.js"></script>
 </head>
 
 <body onload="onPageLoaded()">
 	<h1>Ballroom BPM</h1>
+	<div id="bpm">
+		<div>
+			<input type="number" name="bpm" onchange="bpmChange()">
+			<button name="reset" type="reset" onclick="reset()">Reset</button>
+		</div>
+		<div>
+			<button name="tap" autofocus onclick="tap()">Tap to the beat</button>
+		</div>
+	</div>
 	<div id="chart"></div>
 </body>
 

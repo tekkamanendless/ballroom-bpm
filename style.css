@@ -1,3 +1,18 @@
+#bpm {
+	background-color: antiquewhite;
+}
+
+#bpm input[name="bpm"] {
+	font-size: 4em;
+	width: 3em;
+	text-align: center;
+}
+
+#bpm button[name="tap"] {
+	font-size: 2em;
+	padding: 0.4em;
+}
+
 #chart {
 	width: 100%;
 }
@@ -7,7 +22,12 @@
 }
 
 #chart .filter label {
+	display: inline-block;
+	box-sizing: content-box;
+	margin: 0;
 	margin-right: 1em;
+	text-wrap: nowrap;
+	padding: 0.5em;
 }
 
 #chart .dances .row {
@@ -17,30 +37,33 @@
 	height: 1em;
 	font-size: 0.7em;
 	overflow: hidden;
+	background-color: white;
+	opacity: 80%;
+	padding: 0.2em;
 }
 
 #chart [data-style="Club"] {
-	background-color: rgb(173, 129, 173);
+	background-color: rgb(173, 129, 173) !important;
 }
 
 #chart [data-style="Country"] {
-	background-color: rgb(245, 245, 125);
+	background-color: rgb(245, 245, 125) !important;
 }
 
 #chart [data-style="Latin"] {
-	background-color: pink;
+	background-color: pink !important;
 }
 
 #chart [data-style="Rhythm"] {
-	background-color: pink;
+	background-color: pink !important;
 }
 
 #chart [data-style="Smooth"] {
-	background-color: rgb(93, 93, 251);
+	background-color: rgb(93, 93, 251) !important;
 }
 
 #chart [data-style="Standard"] {
-	background-color: rgb(93, 93, 251);
+	background-color: rgb(93, 93, 251) !important;
 }
 
 #todo {
