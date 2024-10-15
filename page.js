@@ -1,6 +1,3 @@
-let globalData = null;
-let processedData = null;
-
 async function onPageLoaded() {
 	{
 		document.querySelector('#bpm').addEventListener('click', focus);
@@ -16,16 +13,17 @@ async function onPageLoaded() {
 		let response = await fetch('data.json');
 		let data = await response.json();
 		console.log("data:", data);
+		let processedData = processData(data);
+		console.log("processedData:", processedData);
+		renderChart(document.querySelector('#chart'), processedData);
 
-		globalData = data;
 		handleFilter();
 	}
 }
 
 function handleFilter() {
-	processedData = processData(globalData);
-	console.log("processedData:", processedData);
-	renderChart(document.querySelector('#chart'));
+	let filters = processFilters();
+	updateChart(document.querySelector('#chart'), filters);
 }
 
 function queryFilters() {
@@ -45,15 +43,17 @@ function queryFilters() {
 	return filters;
 }
 
-function processData(data) {
+function processFilters() {
 	let filters = queryFilters();
 	console.log("filters:", filters);
+	return filters;
+}
 
+function processData(data) {
 	let processedData = {
 		dances: [],
 		danceNames: [],
 		danceStyles: [],
-		filteredStyles: [],
 		minimumBpm: 0,
 		maximumBpm: 0,
 	};
@@ -67,10 +67,6 @@ function processData(data) {
 
 		danceMap[dance.name] = dance.name;
 		styleMap[dance.style] = dance.style;
-
-		if (filters && !filters.danceStyles.includes(dance.style)) {
-			continue;
-		}
 
 		if (processedData.minimumBpm === 0 || dance.min < processedData.minimumBpm) {
 			processedData.minimumBpm = dance.min;
@@ -92,12 +88,6 @@ function processData(data) {
 	}
 	processedData.danceStyles.sort();
 
-	if (filters === null) {
-		processedData.filteredStyles = processedData.danceStyles;
-	} else {
-		processedData.filteredStyles = filters.danceStyles;
-	}
-
 	processedData.dances.sort((left, right) => {
 		let diff = left.min - right.min;
 		if (diff != 0) {
@@ -110,7 +100,7 @@ function processData(data) {
 	return processedData;
 }
 
-function renderChart(chartElement) {
+function renderChart(chartElement, data) {
 	chartElement.innerHTML = "";
 
 	{
@@ -124,14 +114,14 @@ function renderChart(chartElement) {
 		{
 			let container = document.createElement("div");
 
-			for (let style of processedData.danceStyles) {
+			for (let style of data.danceStyles) {
 				let label = document.createElement("label");
 				label.dataset.style = style;
 
 				let checkbox = document.createElement("input");
 				checkbox.type = "checkbox";
 				checkbox.value = style;
-				checkbox.checked = processedData.filteredStyles.includes(style);
+				checkbox.checked = true;
 				checkbox.name = "style";
 				checkbox.addEventListener("change", () => {
 					handleFilter();
@@ -151,13 +141,9 @@ function renderChart(chartElement) {
 		let container = document.createElement("div");
 		container.className = "dances";
 
-		for (let dance of processedData.dances) {
+		for (let dance of data.dances) {
 			let row = document.createElement('div');
 			row.className = "row";
-
-			row.style.marginLeft = ((dance.min - processedData.minimumBpm) / (processedData.maximumBpm - processedData.minimumBpm) * 100) + "%";
-			row.style.width = ((dance.max - dance.min) / (processedData.maximumBpm - processedData.minimumBpm) * 100) + "%";
-			row.style.maxWidth = ((dance.max - dance.min) / (processedData.maximumBpm - processedData.minimumBpm) * 100) + "%";
 
 			row.title = dance.name;
 			if (dance.style) {
@@ -182,8 +168,9 @@ function renderChart(chartElement) {
 		let container = document.createElement("div");
 		container.className = "info";
 
-		for (let dance of processedData.dances) {
+		for (let dance of data.dances) {
 			let row = document.createElement('div');
+			row.className = "row";
 
 			let line = dance.name;
 			if (dance.style) {
@@ -212,6 +199,47 @@ function renderChart(chartElement) {
 			container.appendChild(row);
 		}
 		chartElement.appendChild(container);
+	}
+}
+
+function updateChart(chartElement, filters) {
+	{
+		let container = chartElement.querySelector('.dances');
+		let rows = chartElement.querySelectorAll('.dances .row');
+		let minimumBpm = 0;
+		let maximumBpm = 0;
+		for (let row of rows) {
+			if (!filters.danceStyles.includes(row.dataset.style)) {
+				row.style.display = "none";
+			} else {
+				row.style.display = "";
+				if (minimumBpm == 0 || parseInt(row.dataset.min) < minimumBpm) {
+					minimumBpm = parseInt(row.dataset.min);
+				}
+				if (maximumBpm == 0 || parseInt(row.dataset.max) > maximumBpm) {
+					maximumBpm = parseInt(row.dataset.max);
+				}
+			}
+		}
+		container.dataset.min = minimumBpm;
+		container.dataset.max = maximumBpm;
+		console.log("Filtered BPM:", minimumBpm, "to", maximumBpm);
+		for (let row of rows) {
+			row.style.marginLeft = ((row.dataset.min - minimumBpm) / (maximumBpm - minimumBpm) * 100) + "%";
+			row.style.width = ((row.dataset.max - row.dataset.min) / (maximumBpm - minimumBpm) * 100) + "%";
+			row.style.maxWidth = ((row.dataset.max - row.dataset.min) / (maximumBpm - minimumBpm) * 100) + "%";
+		}
+	}
+
+	{
+		let rows = chartElement.querySelectorAll('.info .row');
+		for (let row of rows) {
+			if (!filters.danceStyles.includes(row.dataset.style)) {
+				row.style.display = "none";
+			} else {
+				row.style.display = "";
+			}
+		}
 	}
 }
 
@@ -273,8 +301,11 @@ function bpmChange() {
 		return
 	}
 
+	let minimumBpm = parseInt(element.dataset.min);
+	let maximumBpm = parseInt(element.dataset.max);
+
 	let bpm = parseInt(document.querySelector('#bpm input[name="bpm"]').value);
-	if (bpm < processedData.minimumBpm || bpm > processedData.maximumBpm) {
+	if (bpm < minimumBpm || bpm > maximumBpm) {
 		bpm = 0;
 	}
 	if (!bpm) {
@@ -286,6 +317,6 @@ function bpmChange() {
 		element.style.backgroundImage = "linear-gradient(#000, #000)";
 		element.style.backgroundSize = "2px 100%";
 		element.style.backgroundRepeat = "no-repeat";
-		element.style.backgroundPosition = ((bpm - processedData.minimumBpm) / (processedData.maximumBpm - processedData.minimumBpm) * 100) + "% center";
+		element.style.backgroundPosition = ((bpm - minimumBpm) / (maximumBpm - minimumBpm) * 100) + "% center";
 	}
 }
