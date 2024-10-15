@@ -1,5 +1,6 @@
 #bpm {
 	background-color: antiquewhite;
+	text-align: center;
 }
 
 #bpm input[name="bpm"] {
@@ -39,6 +40,14 @@
 	overflow: hidden;
 	background-color: white;
 	opacity: 80%;
+	padding: 0.2em;
+}
+
+.out-bpm {
+	opacity: 30% !important;
+}
+
+#chart .info .row {
 	padding: 0.2em;
 }
 

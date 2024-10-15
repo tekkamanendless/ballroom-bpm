@@ -255,6 +255,7 @@ function focus(e) {
 
 function reset() {
 	document.querySelector('#bpm input[name="bpm"]').value = "";
+	bpmChange();
 	tapEvents = [];
 }
 
@@ -305,18 +306,47 @@ function bpmChange() {
 	let maximumBpm = parseInt(element.dataset.max);
 
 	let bpm = parseInt(document.querySelector('#bpm input[name="bpm"]').value);
+	if (!bpm) {
+		bpm = 0;
+	}
 	if (bpm < minimumBpm || bpm > maximumBpm) {
 		bpm = 0;
 	}
-	if (!bpm) {
-		element.style.backgroundImage = "";
-		element.style.backgroundSize = "";
-		element.style.backgroundRepeat = "";
-		element.style.backgroundPosition = "";
-	} else {
-		element.style.backgroundImage = "linear-gradient(#000, #000)";
-		element.style.backgroundSize = "2px 100%";
-		element.style.backgroundRepeat = "no-repeat";
-		element.style.backgroundPosition = ((bpm - minimumBpm) / (maximumBpm - minimumBpm) * 100) + "% center";
+	console.log("bpmChange: bpm:", bpm, "minimumBpm:", minimumBpm, "maximumBpm:", maximumBpm);
+
+	{
+		if (!bpm) {
+			element.style.backgroundImage = "";
+			element.style.backgroundSize = "";
+			element.style.backgroundRepeat = "";
+			element.style.backgroundPosition = "";
+		} else {
+			element.style.backgroundImage = "linear-gradient(#000, #000)";
+			element.style.backgroundSize = "2px 100%";
+			element.style.backgroundRepeat = "no-repeat";
+			element.style.backgroundPosition = ((bpm - minimumBpm) / (maximumBpm - minimumBpm) * 100) + "% center";
+		}
+	}
+
+	{
+		let rows = document.querySelectorAll('#chart .dances .row');
+		for (let row of rows) {
+			if (bpm == 0 || bpm >= parseInt(row.dataset.min) && bpm <= parseInt(row.dataset.max)) {
+				row.classList.remove('out-bpm');
+			} else {
+				row.classList.add('out-bpm');
+			}
+		}
+	}
+
+	{
+		let rows = document.querySelectorAll('#chart .info .row');
+		for (let row of rows) {
+			if (bpm == 0 || bpm >= parseInt(row.dataset.min) && bpm <= parseInt(row.dataset.max)) {
+				row.classList.remove('out-bpm');
+			} else {
+				row.classList.add('out-bpm');
+			}
+		}
 	}
 }
