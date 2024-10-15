@@ -179,17 +179,17 @@
 			"name": "Merengue",
 			"style": "Latin Club",
 			"timing": 4,
-			"min": 58,
-			"max": 64,
-			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
+			"min": 120,
+			"max": 160,
+			"source": "https://dance-pizazz.com/merengue/"
 		},
 		{
 			"name": "Nightclub Two Step",
 			"style": "Swing Club",
 			"timing": 4,
-			"min": 56,
-			"max": 64,
-			"source": "https://hollywoodballroomdc.com/recommended-tempos-for-dance-music/"
+			"min": 50,
+			"max": 92,
+			"source": "https://www.music4dance.net/dances/night-club-two-step"
 		},
 		{
 			"name": "Paso Doble",
