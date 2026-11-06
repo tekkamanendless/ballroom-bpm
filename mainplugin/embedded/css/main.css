@@ -1,0 +1,103 @@
+.bpm-container {
+	background-color: antiquewhite;
+	text-align: center;
+  user-select: none;
+
+  .bpm-display {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+
+    .blazar-input.bpm-input {
+      font-size: 4em;
+      width: 3em;
+      text-align: center;
+    }
+
+    .blazar-button.reset-button {
+    }
+  }
+
+  .blazar-button.tap-button {
+    font-size: 2em;
+    padding: 2em;
+  }
+}
+
+.chart {
+	width: 100%;
+
+  &>div {
+    margin-top: 1em;
+  }
+
+  .row {
+    background-color: var(--color);
+  }
+
+  .dances {
+    background-image: linear-gradient(#000, #000);
+    background-size: 2px 100%;
+    background-repeat: no-repeat;
+    background-position: calc((var(--bpm) - var(--chart-min-bpm)) / (var(--chart-max-bpm) - var(--chart-min-bpm)) * 100%) center;
+
+    .row {
+      margin: 0;
+      border: 1px solid black;
+      box-sizing: content-box;
+      height: 1em;
+      font-size: 0.7em;
+      overflow: hidden;
+      opacity: 80%;
+      padding: 0.2em;
+
+      margin-left: calc((var(--min-bpm) - var(--chart-min-bpm)) / (var(--chart-max-bpm) - var(--chart-min-bpm)) * 100%);
+      width: calc((var(--max-bpm) - var(--min-bpm)) / (var(--chart-max-bpm) - var(--chart-min-bpm)) * 100%);
+      max-width: calc((var(--max-bpm) - var(--min-bpm)) / (var(--chart-max-bpm) - var(--chart-min-bpm)) * 100%);
+    }
+  }
+
+  .info {
+    .row {
+      padding: 0.2em;
+    }
+  }
+
+  [data-style="Fun"] {
+    --color: #b6b7d8 !important;
+  }
+  
+  [data-style="Latin Club"] {
+    --color: #a5a8d3 !important;
+  }
+
+  [data-style="Swing Club"] {
+    --color: #a5a8d3 !important;
+  }
+  
+  [data-style="Country"] {
+    --color: #fff6bb !important;
+  }
+  
+  [data-style="Latin"] {
+    --color: #d4917d !important;
+  }
+  
+  [data-style="Rhythm"] {
+    --color: #d4917d !important;
+  }
+  
+  [data-style="Smooth"] {
+    --color: #d8b893 !important;
+  }
+  
+  [data-style="Standard"] {
+    --color: #d8b893 !important;
+  }
+
+  .out-bpm {
+    opacity: 30% !important;
+  }
+}
